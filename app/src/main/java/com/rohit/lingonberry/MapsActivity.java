@@ -1,6 +1,7 @@
 package com.rohit.lingonberry;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -123,7 +124,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             @Override
             public void onClick(View v) {
-                Log.d("onClick", "Button is Clicked");
+                Toast.makeText(MapsActivity.this, "Please wait ... fetching nearby hotels", Toast.LENGTH_LONG).show();
                 mMap.clear();
                 String url = getUrl(latitude, longitude, Restaurant);
                 Object[] DataTransfer = new Object[2];
@@ -132,7 +133,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Log.d("onClick", url);
                 GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
                 getNearbyPlacesData.execute(DataTransfer);
-                Toast.makeText(MapsActivity.this, "Nearby Restaurants", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -168,7 +168,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         googlePlacesUrl.append("&type=" + nearbyPlace);
         googlePlacesUrl.append("&sensor=true");
         googlePlacesUrl.append("&key=" + "AIzaSyATuUiZUkEc_UgHuqsBJa1oqaODI-3mLs0");
-        Log.d("getUrl", googlePlacesUrl.toString());
         return (googlePlacesUrl.toString());
     }
 
@@ -199,7 +198,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
-        Toast.makeText(MapsActivity.this, "Hi " + name + " Your Current Location", Toast.LENGTH_LONG).show();
+        Toast.makeText(MapsActivity.this, "Hi " + name + " Your are here", Toast.LENGTH_LONG).show();
 
         Log.d("onLocationChanged", String.format("latitude:%.3f longitude:%.3f", latitude, longitude));
 
@@ -287,6 +286,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        this.finish();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("LingonBerry Login");
 
         btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
         btnSignIn.setOnClickListener(this);
