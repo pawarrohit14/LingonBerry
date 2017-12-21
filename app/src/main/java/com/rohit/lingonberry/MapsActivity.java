@@ -48,6 +48,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     Marker mCurrLocationMarker;
     LocationRequest mLocationRequest;
     String name;
+    Button btnRestaurant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +119,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mMap.setMyLocationEnabled(true);
         }
 
-        Button btnRestaurant = (Button) findViewById(R.id.btnRestaurant);
+        btnRestaurant = (Button) findViewById(R.id.btnRestaurant);
         btnRestaurant.setOnClickListener(new View.OnClickListener() {
             String Restaurant = "restaurant";
 
@@ -133,6 +134,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Log.d("onClick", url);
                 GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
                 getNearbyPlacesData.execute(DataTransfer);
+                btnRestaurant.setVisibility(View.GONE);
             }
         });
 
