@@ -54,8 +54,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        btnRestaurant = (Button) findViewById(R.id.btnRestaurant);
         getSupportActionBar().setTitle("LingonBerry");
-
         Bundle getBundle = null;
         getBundle = this.getIntent().getExtras();
         name = getBundle.getString("NAME");
@@ -119,7 +119,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mMap.setMyLocationEnabled(true);
         }
 
-        btnRestaurant = (Button) findViewById(R.id.btnRestaurant);
         btnRestaurant.setOnClickListener(new View.OnClickListener() {
             String Restaurant = "restaurant";
 
